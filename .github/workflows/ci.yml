@@ -27,7 +27,4 @@ jobs:
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
       - name: "Run checks"
-        run: nix flake check
-
-      - name: "Build dev shells"
-        run: for shell in library application; do nix develop .#${shell} -c true; done
+        run: nix -L flake check
